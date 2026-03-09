@@ -28,6 +28,7 @@
             background-color: var(--bg-main);
             color: var(--text-main);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .container {
@@ -37,13 +38,56 @@
             text-align: center;
         }
 
+        /* Animações Base */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4); }
+            70% { box-shadow: 0 0 0 20px rgba(249, 115, 22, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
+        }
+
+        .animate-fade {
+            opacity: 0;
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+
+        /* Badge Beta */
+        .beta-badge {
+            display: inline-block;
+            background-color: #fef08a;
+            color: #854d0e;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
         /* Headline & Subheadline */
         h1 {
-            font-size: 2.8rem;
+            font-size: 3rem;
             font-weight: 900;
-            color: var(--blue-dark);
             margin-bottom: 20px;
             line-height: 1.2;
+            /* Texto Gradiente */
+            background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-main) 50%, var(--orange-main) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: var(--blue-dark); /* Fallback */
         }
 
         h2.subheadline {
@@ -51,6 +95,9 @@
             font-weight: 400;
             color: var(--blue-main);
             margin-bottom: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* O problema que você vive */
@@ -62,6 +109,7 @@
             text-align: left;
             border-left: 5px solid var(--orange-main);
             font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(29, 78, 216, 0.05);
         }
 
         /* Como funciona */
@@ -70,7 +118,7 @@
         }
 
         .how-it-works h3 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: var(--blue-dark);
             margin-bottom: 30px;
         }
@@ -86,32 +134,52 @@
             display: flex;
             align-items: center;
             background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             border: 1px solid #e2e8f0;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .step:hover {
             transform: translateY(-5px);
-            border-color: var(--blue-main);
+            border-color: var(--orange-main);
+            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.1);
         }
 
         .step-num {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 900;
-            color: var(--orange-main);
-            margin-right: 20px;
+            color: var(--blue-light);
+            -webkit-text-stroke: 2px var(--orange-main);
+            margin-right: 25px;
             min-width: 40px;
+            text-align: center;
+        }
+
+        .step-content {
+            flex: 1;
         }
 
         .step-icons {
             display: flex;
+            flex-wrap: wrap;
             gap: 15px;
-            margin-top: 10px;
-            font-size: 1.5rem;
+            margin-top: 15px;
+            font-size: 1.8rem;
             color: var(--blue-main);
+        }
+
+        .step-icons iconify-icon {
+            transition: transform 0.2s ease, color 0.2s ease;
+            background: var(--blue-light);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .step-icons iconify-icon:hover {
+            transform: scale(1.1);
+            color: var(--orange-main);
         }
 
         /* Benefícios */
@@ -121,7 +189,7 @@
         }
 
         .benefits-section h3 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: var(--blue-dark);
             margin-bottom: 30px;
             text-align: center;
@@ -139,87 +207,110 @@
             align-items: center;
             font-size: 1.1rem;
             background: var(--blue-light);
-            padding: 15px;
-            border-radius: 8px;
-            transition: background 0.2s ease;
+            padding: 20px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
         }
 
         .benefits-list li:hover {
-            background: #e0f2fe;
+            background: #fff;
+            border-color: var(--blue-main);
+            box-shadow: 0 5px 15px rgba(29, 78, 216, 0.08);
+            transform: translateX(5px);
         }
 
         .benefits-list iconify-icon {
             color: var(--orange-main);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin-right: 15px;
+            min-width: 30px;
         }
 
         /* Preço e Oferta */
         .pricing-section {
-            background-color: var(--blue-dark);
+            background: linear-gradient(135deg, var(--blue-dark) 0%, #1e293b 100%);
             color: white;
-            padding: 50px 30px;
-            border-radius: 12px;
+            padding: 60px 30px 80px 30px; /* Padding extra embaixo para o CTA */
+            border-radius: 16px;
             margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.2);
         }
 
         .price {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 900;
             color: var(--orange-main);
             margin-bottom: 10px;
+            line-height: 1;
         }
 
         .offer-details {
             font-size: 1.2rem;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            color: #f8fafc;
         }
 
         .guarantee {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
         /* CTA */
         .cta-container {
-            margin-top: -70px; /* Overlap with pricing */
+            margin-top: -70px; /* Sobrepõe a seção de preço */
             position: relative;
+            z-index: 10;
         }
 
         .cta-button {
             display: inline-block;
             background-color: var(--orange-main);
             color: white;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 900;
             text-transform: uppercase;
             text-decoration: none;
-            padding: 25px 60px;
+            padding: 25px 50px;
             border-radius: 50px;
-            box-shadow: 0 10px 20px rgba(249, 115, 22, 0.4);
+            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.4);
             transition: all 0.3s ease;
             cursor: pointer;
             border: none;
+            animation: pulse 2s infinite;
         }
 
         .cta-button:hover {
             background-color: var(--orange-hover);
-            transform: scale(1.05);
-            box-shadow: 0 15px 25px rgba(249, 115, 22, 0.6);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(249, 115, 22, 0.6);
+            animation: none; /* Para o pulso no hover */
+        }
+
+        .cta-disclaimer {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-top: 25px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
         }
 
         @media (min-width: 768px) {
-            .benefits-list {
-                grid-template-columns: 1fr 1fr;
-            }
+            .benefits-list { grid-template-columns: 1fr 1fr; }
         }
 
         @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
-            .cta-button { font-size: 1.3rem; padding: 20px 40px; }
-            .step { flex-direction: column; text-align: center; }
-            .step-num { margin-right: 0; margin-bottom: 10px; }
+            h1 { font-size: 2.2rem; }
+            .step { flex-direction: column; text-align: center; padding: 20px; }
+            .step-num { margin-right: 0; margin-bottom: 15px; }
             .step-icons { justify-content: center; }
+            .cta-button { font-size: 1.2rem; padding: 20px 30px; width: 90%; }
         }
     </style>
 </head>
@@ -227,37 +318,42 @@
 
     <div class="container">
         
-        <h1 id="headline">Chega de perder tempo copiando textos e fazendo aulas que não dão resultado.</h1>
-        <h2 class="subheadline" id="subheadline">Transforme o conteúdo que você já consome na internet na sua própria máquina de fluência com o SourceFluent AI.</h2>
+        <div class="beta-badge animate-fade" id="beta-badge">Acesso Antecipado / Beta</div>
+        
+        <h1 id="headline" class="animate-fade delay-1">Chega de perder tempo copiando textos e fazendo aulas que não dão resultado.</h1>
+        <h2 class="subheadline animate-fade delay-2" id="subheadline">Transforme o conteúdo que você já consome na internet na sua própria máquina de fluência com o SourceFluent AI.</h2>
 
-        <div class="problem-section">
+        <div class="problem-section animate-fade delay-3">
             <p id="problem-text">Você está de saco cheio de cursos engessados e de perder o foco dando Ctrl+C/Ctrl+V no ChatGPT pra criar seus próprios exercícios. Fazer aulas baseadas só em teoria, sem colocar a mão na massa de forma ativa, só te deixa estagnado e frustrado. A verdade é que aprender inglês só funciona quando você estuda com o que realmente gosta. Você precisa de um jeito automático de transformar seus interesses em prática real.</p>
         </div>
 
-        <div class="how-it-works">
+        <div class="how-it-works animate-fade delay-4">
             <h3 id="how-title">Como funciona:</h3>
             <div class="steps-container">
                 <div class="step">
                     <div class="step-num">1</div>
-                    <div>
+                    <div class="step-content">
                         <strong id="step1-text">Jogue o que quiser pra dentro:</strong> <span id="step1-desc">Faça upload de PDF, cole a URL de um vídeo do YouTube, envie uma imagem (JPG/PNG) ou cole qualquer texto.</span>
                         <div class="step-icons">
                             <iconify-icon icon="vscode-icons:file-type-pdf2" title="PDF"></iconify-icon>
                             <iconify-icon icon="logos:youtube-icon" title="YouTube"></iconify-icon>
-                            <iconify-icon icon="ph:image-square-fill" title="Imagens"></iconify-icon>
-                            <iconify-icon icon="fluent:clipboard-paste-24-filled" title="Texto Colado"></iconify-icon>
+                            <iconify-icon icon="ph:image-square-fill" style="color: #10b981;" title="Imagens"></iconify-icon>
+                            <iconify-icon icon="fluent:clipboard-paste-24-filled" style="color: #6366f1;" title="Texto Colado"></iconify-icon>
                         </div>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-num">2</div>
-                    <div>
+                    <div class="step-content">
                         <strong id="step2-text">A IA faz o trabalho sujo:</strong> <span id="step2-desc">O SourceFluent processa seu conteúdo em segundos, não importa o formato.</span>
+                        <div class="step-icons">
+                            <iconify-icon icon="eos-icons:ai" style="color: var(--orange-main);" title="Inteligência Artificial"></iconify-icon>
+                        </div>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-num">3</div>
-                    <div>
+                    <div class="step-content">
                         <strong id="step3-text">Comece a treinar:</strong> <span id="step3-desc">Acesse sua rotina personalizada imediatamente para estudar.</span>
                         <div class="step-icons">
                             <iconify-icon icon="mdi:format-list-checks" title="Exercícios"></iconify-icon>
@@ -271,7 +367,7 @@
             </div>
         </div>
 
-        <div class="benefits-section">
+        <div class="benefits-section animate-fade delay-5">
             <h3 id="benefits-title">O que você ganha:</h3>
             <ul class="benefits-list">
                 <li><iconify-icon icon="mdi:pencil-box"></iconify-icon> <span id="b1">Exercícios automáticos de completar frases com contexto.</span></li>
@@ -283,29 +379,32 @@
             </ul>
         </div>
 
-        <div class="pricing-section">
-            <div class="price">$9<span style="font-size: 1.5rem;">/mês</span></div>
+        <div class="pricing-section animate-fade delay-5">
+            <div class="price">$9<span style="font-size: 1.5rem; color: #94a3b8;">/mês</span></div>
             <div class="offer-details">
                 <strong id="offer-title">Plano Early Bird. Primeiro mês GRÁTIS para os 50 primeiros usuários.</strong>
             </div>
             <div class="guarantee">
-                <iconify-icon icon="mdi:shield-check" style="vertical-align: middle;"></iconify-icon>
+                <iconify-icon icon="mdi:shield-check" style="font-size: 1.5rem; color: #10b981;"></iconify-icon>
                 <span id="guarantee-text">Garantia incondicional de 7 dias ou seu dinheiro de volta.</span>
             </div>
         </div>
 
-        <div class="cta-container">
+        <div class="cta-container animate-fade delay-5">
             <a href="https://www.paypal.com/ncp/payment/GJ3PT4QSEJ3HW" class="cta-button" id="cta-button">
                 Quero o beta agora
             </a>
+            <p class="cta-disclaimer" id="cta-disclaimer">
+                *O SourceFluent está em fase beta. Você terá acesso total às funcionalidades atuais e futuras, e sua opinião ajudará a moldar a plataforma.
+            </p>
         </div>
 
     </div>
 
     <script>
-        // Dicionário de traduções
         const translations = {
             "pt": {
+                betaBadge: "Acesso Antecipado / Beta",
                 headline: "Chega de perder tempo copiando textos e fazendo aulas que não dão resultado.",
                 subheadline: "Transforme o conteúdo que você já consome na internet na sua própria máquina de fluência com o SourceFluent AI.",
                 problemText: "Você está de saco cheio de cursos engessados e de perder o foco dando Ctrl+C/Ctrl+V no ChatGPT pra criar seus próprios exercícios. Fazer aulas baseadas só em teoria, sem colocar a mão na massa de forma ativa, só te deixa estagnado e frustrado. A verdade é que aprender inglês só funciona quando você estuda com o que realmente gosta. Você precisa de um jeito automático de transformar seus interesses em prática real.",
@@ -325,9 +424,11 @@
                 b6: "Zero tempo gasto criando material. É só sentar e estudar.",
                 offerTitle: "Plano Early Bird. Primeiro mês GRÁTIS para os 50 primeiros usuários.",
                 guaranteeText: "Garantia incondicional de 7 dias ou seu dinheiro de volta.",
-                ctaButton: "Quero o beta agora"
+                ctaButton: "Quero o beta agora",
+                ctaDisclaimer: "*O SourceFluent está em fase beta. Você terá acesso total às funcionalidades atuais e futuras, e sua opinião ajudará a moldar a plataforma."
             },
             "en": {
+                betaBadge: "Early Access / Beta",
                 headline: "Stop wasting time copying texts and taking classes that get you nowhere.",
                 subheadline: "Turn the content you already consume into your personal fluency machine with SourceFluent AI.",
                 problemText: "You are sick and tired of rigid courses and losing focus while copying and pasting into ChatGPT to create your own exercises. Taking classes based only on theory, without active practice, just leaves you stuck and frustrated. The truth is, learning English only works when you study with things you actually enjoy. You need an automated way to turn your interests into real practice.",
@@ -347,23 +448,19 @@
                 b6: "Zero time wasted creating materials. Just sit down and study.",
                 offerTitle: "Early Bird Plan. First month FREE for the first 50 users.",
                 guaranteeText: "7-day unconditional money-back guarantee.",
-                ctaButton: "I want the beta now"
+                ctaButton: "I want the beta now",
+                ctaDisclaimer: "*SourceFluent is currently in beta. You'll get full access to current and future features, and your feedback will help shape the platform."
             }
         };
 
-        // Função para aplicar a tradução com base na linguagem do navegador
         function applyLanguage() {
-            // Detecta a linguagem principal do navegador (pt-BR, pt-PT, en-US, etc)
             let userLang = navigator.language || navigator.userLanguage;
             let langCode = userLang.toLowerCase().startsWith('pt') ? 'pt' : 'en';
             
-            // Atualiza tag lang do HTML
             document.documentElement.lang = userLang;
-
-            // Busca os textos corretos
             const t = translations[langCode];
 
-            // Aplica nos elementos
+            document.getElementById('beta-badge').innerText = t.betaBadge;
             document.getElementById('headline').innerText = t.headline;
             document.getElementById('subheadline').innerText = t.subheadline;
             document.getElementById('problem-text').innerText = t.problemText;
@@ -387,9 +484,9 @@
             document.getElementById('offer-title').innerText = t.offerTitle;
             document.getElementById('guarantee-text').innerText = t.guaranteeText;
             document.getElementById('cta-button').innerText = t.ctaButton;
+            document.getElementById('cta-disclaimer').innerText = t.ctaDisclaimer;
         }
 
-        // Roda a função quando a página carregar
         document.addEventListener('DOMContentLoaded', applyLanguage);
     </script>
 </body>
