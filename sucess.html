@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Status</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+}
+
+body{
+background:#f5f5f5;
+display:flex;
+align-items:center;
+justify-content:center;
+min-height:100vh;
+padding:20px;
+}
+
+.card{
+
+background:white;
+width:100%;
+max-width:420px;
+padding:32px 24px;
+border-radius:14px;
+box-shadow:0 8px 30px rgba(0,0,0,0.08);
+text-align:center;
+
+}
+
+.icon{
+
+width:70px;
+height:70px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:auto;
+margin-bottom:18px;
+font-size:32px;
+
+}
+
+.loading{
+background:#eef2ff;
+color:#6366f1;
+}
+
+.success{
+background:#dcfce7;
+color:#16a34a;
+}
+
+.error{
+background:#fee2e2;
+color:#dc2626;
+}
+
+h1{
+
+font-size:22px;
+margin-bottom:10px;
+color:#111827;
+
+}
+
+p{
+
+font-size:15px;
+color:#6b7280;
+line-height:1.5;
+
+}
+
+.button{
+
+margin-top:24px;
+display:none;
+background:#111827;
+color:white;
+padding:14px;
+border-radius:8px;
+text-decoration:none;
+font-weight:600;
+font-size:15px;
+display:inline-block;
+width:100%;
+
+}
+
+@media (min-width:600px){
+
+.card{
+padding:40px 35px;
+}
+
+h1{
+font-size:24px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<div id="icon" class="icon loading">⏳</div>
+
+<h1 id="title">Processing payment</h1>
+
+<p id="message">
+Verifying your PayPal transaction...
+</p>
+
+<a id="button" class="button" href="/">
+Continue
+</a>
+
+</div>
+
+<script>
+
+const translations = {
+
+en:{
+processing:"Processing payment",
+verifying:"Verifying your PayPal transaction...",
+success:"Payment successful",
+welcome:"Your beta access has been confirmed.",
+error:"Payment could not be confirmed",
+button:"Continue"
+},
+
+pt:{
+processing:"Processando pagamento",
+verifying:"Verificando sua transação PayPal...",
+success:"Pagamento confirmado",
+welcome:"Seu acesso beta foi confirmado.",
+error:"Não foi possível confirmar o pagamento",
+button:"Continuar"
+},
+
+es:{
+processing:"Procesando pago",
+verifying:"Verificando su transacción PayPal...",
+success:"Pago confirmado",
+welcome:"Tu acceso beta ha sido confirmado.",
+error:"No se pudo confirmar el pago",
+button:"Continuar"
+}
+
+};
+
+function getLang(){
+
+const lang = navigator.language || "en";
+
+if(lang.startsWith("pt")) return "pt";
+if(lang.startsWith("es")) return "es";
+
+return "en";
+
+}
+
+const lang = getLang();
+const t = translations[lang];
+
+document.getElementById("title").innerText = t.processing;
+document.getElementById("message").innerText = t.verifying;
+document.getElementById("button").innerText = t.button;
+
+async function verify(){
+
+const params = new URLSearchParams(window.location.search);
+const tx = params.get("tx");
+
+if(!tx){
+
+showError();
+return;
+
+}
+
+try{
+
+const res = await fetch("/verify-payment?tx="+tx);
+const data = await res.json();
+
+if(data.success){
+
+showSuccess();
+
+}else{
+
+showError();
+
+}
+
+}catch{
+
+showError();
+
+}
+
+}
+
+function showSuccess(){
+
+const icon=document.getElementById("icon");
+
+icon.innerHTML="✔";
+icon.className="icon success";
+
+document.getElementById("title").innerText=t.success;
+document.getElementById("message").innerText=t.welcome;
+
+document.getElementById("button").style.display="block";
+
+}
+
+function showError(){
+
+const icon=document.getElementById("icon");
+
+icon.innerHTML="✖";
+icon.className="icon error";
+
+document.getElementById("title").innerText=t.error;
+document.getElementById("message").innerText="";
+
+document.getElementById("button").style.display="block";
+
+}
+
+verify();
+
+</script>
+
+</body>
+</html>
