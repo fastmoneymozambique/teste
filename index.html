@@ -29,12 +29,126 @@
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
+            position: relative;
         }
 
+        /* Suporte RTL para Árabe e Hebraico */
+        html[dir="rtl"] {
+            text-align: right;
+        }
+        html[dir="rtl"] .step-num {
+            margin-right: 0;
+            margin-left: 25px;
+        }
+        html[dir="rtl"] .benefits-list iconify-icon {
+            margin-right: 0;
+            margin-left: 15px;
+        }
+        html[dir="rtl"] .problem-section {
+            border-left: none;
+            border-right: 5px solid var(--orange-main);
+        }
+        html[dir="rtl"] .input-wrapper iconify-icon {
+            left: auto;
+            right: 15px;
+        }
+        html[dir="rtl"] .form-control {
+            padding: 14px 45px 14px 14px;
+        }
+
+        /* Seletor de Idiomas (Topo Direito) */
+        .lang-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        html[dir="rtl"] .lang-switcher {
+            right: auto;
+            left: 20px;
+        }
+
+        .lang-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--blue-dark);
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover {
+            border-color: var(--blue-main);
+            box-shadow: 0 4px 12px rgba(29, 78, 216, 0.15);
+        }
+
+        .lang-btn iconify-icon {
+            font-size: 1.2rem;
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 10px;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 170px;
+            max-height: 350px; /* Evita que o menu passe da tela no celular */
+            overflow-y: auto;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        html[dir="rtl"] .lang-dropdown {
+            right: auto;
+            left: 0;
+        }
+
+        .lang-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: background 0.2s ease;
+            text-align: left;
+        }
+        html[dir="rtl"] .lang-option { text-align: right; }
+
+        .lang-option:hover {
+            background: var(--blue-light);
+            color: var(--blue-main);
+        }
+
+        .lang-option iconify-icon {
+            font-size: 1.4rem;
+        }
+
+        /* Container Principal */
         .container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 80px 20px 60px 20px;
             text-align: center;
         }
 
@@ -100,314 +214,73 @@
             margin-right: auto;
         }
 
-        /* O problema que você vive */
+        /* O problema */
         .problem-section {
             background-color: var(--blue-light);
             padding: 40px;
             border-radius: 12px;
             margin-bottom: 60px;
-            text-align: left;
+            text-align: start; /* Adapta RTL/LTR automático */
             border-left: 5px solid var(--orange-main);
             font-size: 1.1rem;
             box-shadow: 0 10px 30px rgba(29, 78, 216, 0.05);
         }
 
         /* Como funciona */
-        .how-it-works {
-            margin-bottom: 60px;
-        }
-
-        .how-it-works h3 {
-            font-size: 2rem;
-            color: var(--blue-dark);
-            margin-bottom: 30px;
-        }
-
-        .steps-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            text-align: left;
-        }
-
-        .step {
-            display: flex;
-            align-items: center;
-            background: #fff;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
-            transition: all 0.3s ease;
-        }
-
-        .step:hover {
-            transform: translateY(-5px);
-            border-color: var(--orange-main);
-            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.1);
-        }
-
-        .step-num {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--blue-light);
-            -webkit-text-stroke: 2px var(--orange-main);
-            margin-right: 25px;
-            min-width: 40px;
-            text-align: center;
-        }
-
-        .step-content {
-            flex: 1;
-        }
-
-        .step-icons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 15px;
-            font-size: 1.8rem;
-            color: var(--blue-main);
-        }
-
-        .step-icons iconify-icon {
-            transition: transform 0.2s ease, color 0.2s ease;
-            background: var(--blue-light);
-            padding: 10px;
-            border-radius: 8px;
-        }
-
-        .step-icons iconify-icon:hover {
-            transform: scale(1.1);
-            color: var(--orange-main);
-        }
+        .how-it-works { margin-bottom: 60px; }
+        .how-it-works h3 { font-size: 2rem; color: var(--blue-dark); margin-bottom: 30px; }
+        .steps-container { display: flex; flex-direction: column; gap: 20px; text-align: start; }
+        .step { display: flex; align-items: center; background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; transition: all 0.3s ease; }
+        .step:hover { transform: translateY(-5px); border-color: var(--orange-main); box-shadow: 0 10px 25px rgba(249, 115, 22, 0.1); }
+        .step-num { font-size: 2.5rem; font-weight: 900; color: var(--blue-light); -webkit-text-stroke: 2px var(--orange-main); margin-right: 25px; min-width: 40px; text-align: center; }
+        .step-content { flex: 1; }
+        .step-icons { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 15px; font-size: 1.8rem; color: var(--blue-main); }
+        .step-icons iconify-icon { transition: transform 0.2s ease, color 0.2s ease; background: var(--blue-light); padding: 10px; border-radius: 8px; }
+        .step-icons iconify-icon:hover { transform: scale(1.1); color: var(--orange-main); }
 
         /* Benefícios */
-        .benefits-section {
-            margin-bottom: 60px;
-            text-align: left;
-        }
-
-        .benefits-section h3 {
-            font-size: 2rem;
-            color: var(--blue-dark);
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .benefits-list {
-            list-style: none;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-        }
-
-        .benefits-list li {
-            display: flex;
-            align-items: center;
-            font-size: 1.1rem;
-            background: var(--blue-light);
-            padding: 20px;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-        }
-
-        .benefits-list li:hover {
-            background: #fff;
-            border-color: var(--blue-main);
-            box-shadow: 0 5px 15px rgba(29, 78, 216, 0.08);
-            transform: translateX(5px);
-        }
-
-        .benefits-list iconify-icon {
-            color: var(--orange-main);
-            font-size: 1.8rem;
-            margin-right: 15px;
-            min-width: 30px;
-        }
+        .benefits-section { margin-bottom: 60px; text-align: start; }
+        .benefits-section h3 { font-size: 2rem; color: var(--blue-dark); margin-bottom: 30px; text-align: center; }
+        .benefits-list { list-style: none; display: grid; grid-template-columns: 1fr; gap: 15px; }
+        .benefits-list li { display: flex; align-items: center; font-size: 1.1rem; background: var(--blue-light); padding: 20px; border-radius: 12px; transition: all 0.3s ease; border: 1px solid transparent; }
+        .benefits-list li:hover { background: #fff; border-color: var(--blue-main); box-shadow: 0 5px 15px rgba(29, 78, 216, 0.08); transform: translateX(5px); }
+        html[dir="rtl"] .benefits-list li:hover { transform: translateX(-5px); }
+        .benefits-list iconify-icon { color: var(--orange-main); font-size: 1.8rem; margin-right: 15px; min-width: 30px; }
 
         /* Preço e Oferta */
-        .pricing-section {
-            background: linear-gradient(135deg, var(--blue-dark) 0%, #1e293b 100%);
-            color: white;
-            padding: 60px 30px 80px 30px;
-            border-radius: 16px;
-            margin-bottom: 40px;
-            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.2);
-        }
-
-        .price {
-            font-size: 4rem;
-            font-weight: 900;
-            color: var(--orange-main);
-            margin-bottom: 10px;
-            line-height: 1;
-        }
-
-        .offer-details {
-            font-size: 1.2rem;
-            margin-bottom: 25px;
-            color: #f8fafc;
-        }
-
-        .guarantee {
-            font-size: 1rem;
-            color: #cbd5e1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
+        .pricing-section { background: linear-gradient(135deg, var(--blue-dark) 0%, #1e293b 100%); color: white; padding: 60px 30px 80px 30px; border-radius: 16px; margin-bottom: 40px; box-shadow: 0 20px 40px rgba(15, 23, 42, 0.2); }
+        .price { font-size: 4rem; font-weight: 900; color: var(--orange-main); margin-bottom: 10px; line-height: 1; }
+        .offer-details { font-size: 1.2rem; margin-bottom: 25px; color: #f8fafc; }
+        .guarantee { font-size: 1rem; color: #cbd5e1; display: flex; align-items: center; justify-content: center; gap: 8px; }
 
         /* CTA */
-        .cta-container {
-            margin-top: -70px;
-            position: relative;
-            z-index: 10;
-            margin-bottom: 60px;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background-color: var(--orange-main);
-            color: white;
-            font-size: 1.6rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            text-decoration: none;
-            padding: 25px 50px;
-            border-radius: 50px;
-            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.4);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-            animation: pulse 2s infinite;
-        }
-
-        .cta-button:hover {
-            background-color: var(--orange-hover);
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 15px 35px rgba(249, 115, 22, 0.6);
-            animation: none;
-        }
-
-        .cta-disclaimer {
-            font-size: 0.85rem;
-            color: #64748b;
-            margin-top: 25px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.5;
-        }
+        .cta-container { margin-top: -70px; position: relative; z-index: 10; margin-bottom: 60px; }
+        .cta-button { display: inline-block; background-color: var(--orange-main); color: white; font-size: 1.6rem; font-weight: 900; text-transform: uppercase; text-decoration: none; padding: 25px 50px; border-radius: 50px; box-shadow: 0 10px 25px rgba(249, 115, 22, 0.4); transition: all 0.3s ease; cursor: pointer; border: none; animation: pulse 2s infinite; }
+        .cta-button:hover { background-color: var(--orange-hover); transform: translateY(-3px) scale(1.02); box-shadow: 0 15px 35px rgba(249, 115, 22, 0.6); animation: none; }
+        .cta-disclaimer { font-size: 0.85rem; color: #64748b; margin-top: 25px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.5; }
 
         /* Formulário de Comprovante */
-        .form-section {
-            background: #fff;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            border: 1px solid #e2e8f0;
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: left;
-        }
+        .form-section { background: #fff; padding: 40px; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; max-width: 600px; margin: 0 auto; text-align: start; }
+        .form-section h3 { font-size: 1.5rem; color: var(--blue-dark); margin-bottom: 10px; text-align: center; }
+        .form-section p.form-subtitle { text-align: center; color: #64748b; margin-bottom: 30px; font-size: 0.95rem; }
+        .form-group { margin-bottom: 20px; position: relative; }
+        .form-group label { display: block; font-weight: 700; margin-bottom: 8px; color: var(--blue-dark); font-size: 0.95rem; }
+        .input-wrapper { position: relative; display: flex; align-items: center; }
+        .input-wrapper iconify-icon { position: absolute; left: 15px; font-size: 1.2rem; color: #94a3b8; }
+        .form-control { width: 100%; padding: 14px 14px 14px 45px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease; outline: none; color: var(--text-main); }
+        .form-control:focus { border-color: var(--blue-main); box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.1); }
+        .form-control[type="file"] { padding: 11px 14px 11px 45px; background: #f8fafc; cursor: pointer; }
+        .submit-btn { width: 100%; background-color: var(--blue-main); color: white; font-size: 1.2rem; font-weight: 700; padding: 16px; border-radius: 8px; border: none; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 10px; }
+        .submit-btn:hover { background-color: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(15, 23, 42, 0.2); }
 
-        .form-section h3 {
-            font-size: 1.5rem;
-            color: var(--blue-dark);
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .form-section p.form-subtitle {
-            text-align: center;
-            color: #64748b;
-            margin-bottom: 30px;
-            font-size: 0.95rem;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--blue-dark);
-            font-size: 0.95rem;
-        }
-
-        .input-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .input-wrapper iconify-icon {
-            position: absolute;
-            left: 15px;
-            font-size: 1.2rem;
-            color: #94a3b8;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 14px 14px 14px 45px;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            outline: none;
-            color: var(--text-main);
-        }
-
-        .form-control:focus {
-            border-color: var(--blue-main);
-            box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.1);
-        }
-
-        .form-control[type="file"] {
-            padding: 11px 14px 11px 45px;
-            background: #f8fafc;
-            cursor: pointer;
-        }
-
-        .submit-btn {
-            width: 100%;
-            background-color: var(--blue-main);
-            color: white;
-            font-size: 1.2rem;
-            font-weight: 700;
-            padding: 16px;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .submit-btn:hover {
-            background-color: var(--blue-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(15, 23, 42, 0.2);
-        }
-
-        @media (min-width: 768px) {
-            .benefits-list { grid-template-columns: 1fr 1fr; }
-        }
-
+        @media (min-width: 768px) { .benefits-list { grid-template-columns: 1fr 1fr; } }
         @media (max-width: 600px) {
+            .lang-switcher { top: 15px; right: 15px; }
+            html[dir="rtl"] .lang-switcher { right: auto; left: 15px; }
+            .container { padding-top: 70px; }
             h1 { font-size: 2.2rem; }
             .step { flex-direction: column; text-align: center; padding: 20px; }
-            .step-num { margin-right: 0; margin-bottom: 15px; }
+            .step-num { margin: 0 0 15px 0; }
             .step-icons { justify-content: center; }
             .cta-button { font-size: 1.2rem; padding: 20px 30px; width: 90%; }
             .form-section { padding: 25px 20px; }
@@ -415,6 +288,50 @@
     </style>
 </head>
 <body>
+
+    <div class="lang-switcher">
+        <button class="lang-btn" id="lang-btn" onclick="toggleLangMenu()">
+            <iconify-icon id="current-flag" icon="twemoji:flag-brazil"></iconify-icon>
+            <span id="current-lang-code">PT</span>
+            <iconify-icon icon="mdi:chevron-down"></iconify-icon>
+        </button>
+        
+        <div class="lang-dropdown" id="lang-dropdown">
+            <div class="lang-option" onclick="changeLanguage('pt', 'twemoji:flag-brazil', 'PT')">
+                <iconify-icon icon="twemoji:flag-brazil"></iconify-icon> Português
+            </div>
+            <div class="lang-option" onclick="changeLanguage('en', 'twemoji:flag-united-states', 'EN')">
+                <iconify-icon icon="twemoji:flag-united-states"></iconify-icon> English
+            </div>
+            <div class="lang-option" onclick="changeLanguage('es', 'twemoji:flag-spain', 'ES')">
+                <iconify-icon icon="twemoji:flag-spain"></iconify-icon> Español
+            </div>
+            <div class="lang-option" onclick="changeLanguage('fr', 'twemoji:flag-france', 'FR')">
+                <iconify-icon icon="twemoji:flag-france"></iconify-icon> Français
+            </div>
+            <div class="lang-option" onclick="changeLanguage('de', 'twemoji:flag-germany', 'DE')">
+                <iconify-icon icon="twemoji:flag-germany"></iconify-icon> Deutsch
+            </div>
+            <div class="lang-option" onclick="changeLanguage('it', 'twemoji:flag-italy', 'IT')">
+                <iconify-icon icon="twemoji:flag-italy"></iconify-icon> Italiano
+            </div>
+            <div class="lang-option" onclick="changeLanguage('hi', 'twemoji:flag-india', 'HI')">
+                <iconify-icon icon="twemoji:flag-india"></iconify-icon> हिन्दी (Hindi)
+            </div>
+            <div class="lang-option" onclick="changeLanguage('zh', 'twemoji:flag-china', 'ZH')">
+                <iconify-icon icon="twemoji:flag-china"></iconify-icon> 中文 (Chinese)
+            </div>
+            <div class="lang-option" onclick="changeLanguage('ja', 'twemoji:flag-japan', 'JA')">
+                <iconify-icon icon="twemoji:flag-japan"></iconify-icon> 日本語 (Japanese)
+            </div>
+            <div class="lang-option" onclick="changeLanguage('ar', 'twemoji:flag-saudi-arabia', 'AR')">
+                <iconify-icon icon="twemoji:flag-saudi-arabia"></iconify-icon> العربية (Arabic)
+            </div>
+            <div class="lang-option" onclick="changeLanguage('he', 'twemoji:flag-israel', 'HE')">
+                <iconify-icon icon="twemoji:flag-israel"></iconify-icon> עברית (Hebrew)
+            </div>
+        </div>
+    </div>
 
     <div class="container">
         
@@ -503,7 +420,9 @@
             <h3 id="form-title">Já fez o pagamento?</h3>
             <p class="form-subtitle" id="form-subtitle">Envie seu e-mail e a imagem do comprovante abaixo para liberarmos seu acesso antecipado imediatamente.</p>
             
-            <form action="https://formly.email/e903f8eab43a44b2ac7ba775eecff000" method="POST" enctype="multipart/form-data">
+            <form action="https://formsubmit.co/SEU_EMAIL_AQUI@gmail.com" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="_subject" value="Novo Comprovante - SourceFluent AI">
+                <input type="hidden" name="_captcha" value="false">
                 
                 <div class="form-group">
                     <label for="name" id="label-name">Seu Nome</label>
@@ -525,7 +444,7 @@
                     <label for="receipt" id="label-receipt">Comprovante de Pagamento (Imagem/Foto)</label>
                     <div class="input-wrapper">
                         <iconify-icon icon="mdi:image-outline"></iconify-icon>
-                        <input type="file" id="receipt" name="attachment" class="form-control" accept="image/png, image/jpeg, image/jpg" required>
+                        <input type="file" id="receipt" name="attachment" class="form-control" accept="image/png, image/jpeg, image/jpg, application/pdf" required>
                     </div>
                 </div>
 
@@ -603,29 +522,319 @@
                 phEmail: "The same one used on PayPal",
                 labelReceipt: "Payment Receipt (Image/Photo)",
                 btnSubmit: "Submit Receipt"
+            },
+            "es": {
+                betaBadge: "Acceso Anticipado / Beta",
+                headline: "Deja de perder tiempo copiando textos y tomando clases que no dan resultados.",
+                subheadline: "Convierte el contenido que ya consumes en internet en tu propia máquina de fluidez con SourceFluent AI.",
+                problemText: "Estás harto de cursos rígidos y de perder la concentración copiando y pegando en ChatGPT para crear tus propios ejercicios. Las clases basadas solo en teoría te dejan estancado y frustrado. La verdad es que aprender inglés solo funciona cuando estudias con lo que realmente te gusta.",
+                howTitle: "Cómo funciona:",
+                step1Text: "Sube lo que quieras:",
+                step1Desc: "Sube un PDF, pega una URL de YouTube, envía una imagen (JPG/PNG) o pega cualquier texto.",
+                step2Text: "La IA hace el trabajo sucio:",
+                step2Desc: "SourceFluent procesa tu contenido en segundos, sin importar el formato.",
+                step3Text: "Empieza a entrenar:",
+                step3Desc: "Accede a tu rutina personalizada de inmediato y comienza a estudiar.",
+                benefitsTitle: "Lo que obtienes:",
+                b1: "Ejercicios automáticos de completar espacios con contexto.",
+                b2: "Cuestionarios desafiantes extraídos directamente de tu material.",
+                b3: "Tarjetas de memoria (flashcards) inteligentes para retener vocabulario.",
+                b4: "Indicaciones de voz para forzarte a practicar speaking solo.",
+                b5: "Audio generado nativamente para entrenar tu comprensión auditiva.",
+                b6: "Cero tiempo perdido creando materiales. Solo siéntate y estudia.",
+                offerTitle: "Plan Early Bird. Primer mes GRATIS para los primeros 50 usuarios.",
+                guaranteeText: "Garantía incondicional de devolución de dinero de 7 días.",
+                ctaButton: "Quiero la beta ahora",
+                ctaDisclaimer: "*SourceFluent está actualmente en fase beta. Tu feedback ayudará a dar forma a la plataforma.",
+                formTitle: "¿Ya pagaste?",
+                formSubtitle: "Envía tu correo y el recibo abajo para liberar tu acceso anticipado de inmediato.",
+                labelName: "Tu Nombre",
+                phName: "¿Cómo te llamamos?",
+                labelEmail: "Correo de Acceso",
+                phEmail: "El mismo que usaste en PayPal",
+                labelReceipt: "Recibo de Pago (Imagen/Foto)",
+                btnSubmit: "Enviar Recibo"
+            },
+            "fr": {
+                betaBadge: "Accès Anticipé / Bêta",
+                headline: "Arrêtez de perdre du temps à copier des textes et à suivre des cours sans résultats.",
+                subheadline: "Transformez le contenu que vous consommez déjà sur Internet en votre propre machine à fluidité avec SourceFluent AI.",
+                problemText: "Vous en avez assez des cours rigides et de perdre votre concentration en copiant-collant sur ChatGPT. Prendre des cours basés uniquement sur la théorie, sans pratique active, vous laisse bloqué et frustré. Apprendre l'anglais ne fonctionne que lorsque vous étudiez avec des choses que vous aimez vraiment.",
+                howTitle: "Comment ça marche :",
+                step1Text: "Importez ce que vous voulez :",
+                step1Desc: "Téléchargez un PDF, collez l'URL d'une vidéo YouTube, envoyez une image ou collez n'importe quel texte.",
+                step2Text: "L'IA fait le sale boulot :",
+                step2Desc: "SourceFluent traite votre contenu en quelques secondes, quel que soit le format.",
+                step3Text: "Commencez à vous entraîner :",
+                step3Desc: "Accédez immédiatement à votre routine personnalisée pour étudier.",
+                benefitsTitle: "Ce que vous obtenez :",
+                b1: "Exercices à trous automatisés avec contexte.",
+                b2: "Des quiz stimulants extraits directement de votre matériel.",
+                b3: "Flashcards intelligentes pour mémoriser le vocabulaire.",
+                b4: "Sujets d'expression orale pour vous forcer à parler seul.",
+                b5: "Audio généré nativement pour entraîner votre écoute.",
+                b6: "Zéro temps perdu à créer du matériel. Asseyez-vous et étudiez.",
+                offerTitle: "Plan Early Bird. Premier mois GRATUIT pour les 50 premiers utilisateurs.",
+                guaranteeText: "Garantie de remboursement inconditionnelle de 7 jours.",
+                ctaButton: "Je veux la bêta maintenant",
+                ctaDisclaimer: "*SourceFluent est actuellement en version bêta. Vos retours nous aideront à façonner la plateforme.",
+                formTitle: "Déjà payé ?",
+                formSubtitle: "Soumettez votre e-mail et le reçu ci-dessous pour débloquer votre accès anticipé.",
+                labelName: "Votre Nom",
+                phName: "Comment devons-nous vous appeler ?",
+                labelEmail: "E-mail du compte",
+                phEmail: "Le même que celui utilisé sur PayPal",
+                labelReceipt: "Reçu de paiement (Image/Photo)",
+                btnSubmit: "Envoyer le reçu"
+            },
+            "de": {
+                betaBadge: "Early Access / Beta",
+                headline: "Hör auf, Zeit mit dem Kopieren von Texten und nutzlosen Kursen zu verschwenden.",
+                subheadline: "Verwandle die Inhalte, die du bereits im Internet konsumierst, mit SourceFluent AI in deine persönliche Fluency-Maschine.",
+                problemText: "Du hast die Nase voll von starren Kursen und dem ständigen Kopieren in ChatGPT, um deine eigenen Übungen zu erstellen. Theoriebasierte Kurse ohne aktive Praxis lassen dich nur frustriert zurück. Englisch lernen funktioniert nur, wenn du mit Dingen lernst, die dir wirklich Spaß machen.",
+                howTitle: "Wie es funktioniert:",
+                step1Text: "Wirf einfach alles rein:",
+                step1Desc: "Lade ein PDF hoch, füge eine YouTube-Video-URL ein, sende ein Bild (JPG/PNG) oder jeden beliebigen Text.",
+                step2Text: "Die KI erledigt die Drecksarbeit:",
+                step2Desc: "SourceFluent verarbeitet deine Inhalte in Sekundenschnelle, unabhängig vom Format.",
+                step3Text: "Beginne mit dem Training:",
+                step3Desc: "Greife sofort auf deine personalisierte Routine zu und fange an zu lernen.",
+                benefitsTitle: "Was du bekommst:",
+                b1: "Automatisierte Lückentexte mit Kontext.",
+                b2: "Herausfordernde Quizze, direkt aus deinem Material extrahiert.",
+                b3: "Smarte Karteikarten (Flashcards), damit Vokabeln hängen bleiben.",
+                b4: "Sprechanreize, um dich zum Sprechen zu bringen.",
+                b5: "Nativ generiertes Audio, um dein Hörverständnis zu trainieren.",
+                b6: "Keine Zeitverschwendung beim Erstellen von Material. Einfach hinsetzen und lernen.",
+                offerTitle: "Early Bird Plan. Erster Monat KOSTENLOS für die ersten 50 Nutzer.",
+                guaranteeText: "7 Tage bedingungslose Geld-zurück-Garantie.",
+                ctaButton: "Ich will die Beta jetzt",
+                ctaDisclaimer: "*SourceFluent befindet sich in der Beta-Phase. Dein Feedback wird helfen, die Plattform zu gestalten.",
+                formTitle: "Schon bezahlt?",
+                formSubtitle: "Sende deine E-Mail und den Beleg unten ein, damit wir deinen Zugang sofort freischalten können.",
+                labelName: "Dein Name",
+                phName: "Wie sollen wir dich nennen?",
+                labelEmail: "Account E-Mail",
+                phEmail: "Die gleiche, die bei PayPal verwendet wurde",
+                labelReceipt: "Zahlungsbeleg (Bild/Foto)",
+                btnSubmit: "Beleg einreichen"
+            },
+            "it": {
+                betaBadge: "Accesso Anticipato / Beta",
+                headline: "Smetti di perdere tempo copiando testi e seguendo lezioni che non ti portano a nulla.",
+                subheadline: "Trasforma i contenuti che già consumi su Internet nella tua personale macchina per la fluidità con SourceFluent AI.",
+                problemText: "Sei stanco di corsi rigidi e di perdere la concentrazione copiando e incollando su ChatGPT per creare i tuoi esercizi. Seguire lezioni basate solo sulla teoria, senza pratica attiva, ti lascia bloccato e frustrato. La verità è che imparare l'inglese funziona solo quando studi con ciò che ti piace veramente.",
+                howTitle: "Come funziona:",
+                step1Text: "Carica qualsiasi cosa:",
+                step1Desc: "Carica un PDF, incolla l'URL di un video di YouTube, invia un'immagine (JPG/PNG) o incolla un testo.",
+                step2Text: "L'IA fa il lavoro sporco:",
+                step2Desc: "SourceFluent elabora i tuoi contenuti in pochi secondi, indipendentemente dal formato.",
+                step3Text: "Inizia ad allenarti:",
+                step3Desc: "Accedi immediatamente alla tua routine personalizzata e inizia a studiare.",
+                benefitsTitle: "Cosa ottieni:",
+                b1: "Esercizi di riempimento degli spazi vuoti automatizzati con contesto.",
+                b2: "Quiz stimolanti estratti direttamente dal tuo materiale.",
+                b3: "Flashcard intelligenti per memorizzare il vocabolario per sempre.",
+                b4: "Spunti di conversazione per sforzarti a fare pratica parlando da solo.",
+                b5: "Audio generato nativamente per allenare il tuo ascolto.",
+                b6: "Zero tempo sprecato a creare materiali. Siediti e studia.",
+                offerTitle: "Piano Early Bird. Primo mese GRATIS per i primi 50 utenti.",
+                guaranteeText: "Garanzia di rimborso incondizionata di 7 giorni.",
+                ctaButton: "Voglio la beta ora",
+                ctaDisclaimer: "*SourceFluent è attualmente in fase beta. Il tuo feedback ci aiuterà a dare forma alla piattaforma.",
+                formTitle: "Hai già pagato?",
+                formSubtitle: "Invia la tua e-mail e la ricevuta qui sotto così possiamo garantirti l'accesso anticipato.",
+                labelName: "Il tuo nome",
+                phName: "Come dovremmo chiamarti?",
+                labelEmail: "E-mail dell'account",
+                phEmail: "La stessa usata su PayPal",
+                labelReceipt: "Ricevuta di pagamento (Immagine/Foto)",
+                btnSubmit: "Invia Ricevuta"
+            },
+            "hi": {
+                betaBadge: "अर्ली एक्सेस / बीटा",
+                headline: "टेक्स्ट कॉपी करने और बिना नतीजे वाली क्लास लेने में समय बर्बाद करना बंद करें।",
+                subheadline: "SourceFluent AI के साथ अपने इंटरनेट कंटेंट को अपनी पर्सनल फ्लुएंसी मशीन में बदलें।",
+                problemText: "आप कठोर पाठ्यक्रमों से तंग आ चुके हैं और अपने खुद के अभ्यास बनाने के लिए ChatGPT में कॉपी-पेस्ट करते हुए ध्यान खो रहे हैं। बिना सक्रिय अभ्यास के केवल सिद्धांत पर आधारित कक्षाएं आपको अटका हुआ और निराश छोड़ देती हैं। सच तो यह है कि अंग्रेजी सीखना तभी काम करता है जब आप उन चीजों का अध्ययन करते हैं जो आपको वास्तव में पसंद हैं।",
+                howTitle: "यह कैसे काम करता है:",
+                step1Text: "कुछ भी अपलोड करें:",
+                step1Desc: "पीडीएफ अपलोड करें, YouTube वीडियो URL पेस्ट करें, छवि (JPG/PNG) भेजें, या कोई भी टेक्स्ट पेस्ट करें।",
+                step2Text: "एआई आपका काम आसान करता है:",
+                step2Desc: "SourceFluent आपके कंटेंट को सेकंडों में प्रोसेस करता है, चाहे फॉर्मेट कुछ भी हो।",
+                step3Text: "ट्रेनिंग शुरू करें:",
+                step3Desc: "अपनी व्यक्तिगत दिनचर्या तक तुरंत पहुंचें और अध्ययन शुरू करें।",
+                benefitsTitle: "आपको क्या मिलेगा:",
+                b1: "संदर्भ के साथ स्वचालित रिक्त स्थान भरने वाले अभ्यास।",
+                b2: "सीधे आपके सामग्री से निकाले गए चुनौतीपूर्ण क्विज़।",
+                b3: "शब्दावली को हमेशा के लिए याद रखने के लिए स्मार्ट फ्लैशकार्ड।",
+                b4: "अकेले बोलने का अभ्यास करने के लिए स्पीकिंग प्रॉम्प्ट्स।",
+                b5: "सुनने के कौशल को प्रशिक्षित करने के लिए नेटिव जनरेटेड ऑडियो।",
+                b6: "सामग्री बनाने में कोई समय बर्बाद नहीं। बस बैठें और अध्ययन करें।",
+                offerTitle: "अर्ली बर्ड प्लान। पहले 50 उपयोगकर्ताओं के लिए पहला महीना मुफ़्त।",
+                guaranteeText: "7 दिन की बिना शर्त पैसे वापसी की गारंटी।",
+                ctaButton: "मुझे अभी बीटा चाहिए",
+                ctaDisclaimer: "*SourceFluent वर्तमान में बीटा में है। आपकी प्रतिक्रिया प्लेटफ़ॉर्म को आकार देने में मदद करेगी।",
+                formTitle: "क्या आपने भुगतान कर दिया है?",
+                formSubtitle: "अपना ईमेल और रसीद नीचे सबमिट करें ताकि हम आपका अर्ली एक्सेस तुरंत अनलॉक कर सकें।",
+                labelName: "आपका नाम",
+                phName: "हम आपको क्या बुलाएं?",
+                labelEmail: "अकाउंट ईमेल",
+                phEmail: "वही जो PayPal पर उपयोग किया गया है",
+                labelReceipt: "भुगतान रसीद (छवि/तस्वीर)",
+                btnSubmit: "रसीद सबमिट करें"
+            },
+            "zh": {
+                betaBadge: "抢先体验 / Beta",
+                headline: "不要再浪费时间复制文本和上无效的课程了。",
+                subheadline: "使用 SourceFluent AI 将您已经在网上浏览的内容转化为您专属的流利口语制造机。",
+                problemText: "您已经厌倦了死板的课程，厌倦了在 ChatGPT 复制粘贴来创建练习时失去注意力。仅基于理论而没有主动实践的课程只会让您停滞不前、感到挫败。事实上，只有当您用真正喜欢的东西来学习时，学英语才有效。",
+                howTitle: "如何运作：",
+                step1Text: "上传任何内容：",
+                step1Desc: "上传 PDF、粘贴 YouTube 视频网址、发送图片 (JPG/PNG) 或粘贴任何文本。",
+                step2Text: "AI 帮您搞定繁琐工作：",
+                step2Desc: "无论什么格式，SourceFluent 都能在几秒钟内处理您的内容。",
+                step3Text: "开始训练：",
+                step3Desc: "立即访问您的专属学习计划并开始学习。",
+                benefitsTitle: "您将获得：",
+                b1: "带有上下文的自动填空练习。",
+                b2: "直接从您的材料中提取的挑战性测试。",
+                b3: "智能抽认卡，让词汇永远留在脑海中。",
+                b4: "口语提示，迫使您独自练习口语。",
+                b5: "原生生成的音频，用于训练您的听力。",
+                b6: "零时间浪费在创建材料上。坐下来学习即可。",
+                offerTitle: "早鸟计划。前 50 名用户首月免费。",
+                guaranteeText: "7 天无条件退款保证。",
+                ctaButton: "我现在就要 Beta 版",
+                ctaDisclaimer: "*SourceFluent 目前处于测试阶段。您的反馈将帮助塑造平台。",
+                formTitle: "已经付款？",
+                formSubtitle: "在下方提交您的电子邮件和收据截图，我们将立即为您开通抢先体验权限。",
+                labelName: "您的名字",
+                phName: "我们该如何称呼您？",
+                labelEmail: "帐户邮箱",
+                phEmail: "与 PayPal 上使用的邮箱相同",
+                labelReceipt: "付款收据（图片/照片）",
+                btnSubmit: "提交收据"
+            },
+            "ja": {
+                betaBadge: "早期アクセス / ベータ",
+                headline: "テキストのコピーや成果の出ない授業で時間を無駄にするのはやめましょう。",
+                subheadline: "SourceFluent AI を使って、ネットで消費しているコンテンツを自分専用の流暢さ獲得マシンに変えましょう。",
+                problemText: "あなたは型にはまったコースにうんざりし、自作の練習問題を作るために ChatGPT にコピペして集中力を失うことに疲れています。アクティブな練習なしで理論だけの授業を受けても、行き詰まりとフラストレーションを感じるだけです。実際のところ、英語学習は本当に好きなことで学ぶ時にだけ効果があります。",
+                howTitle: "使い方：",
+                step1Text: "何でもアップロード：",
+                step1Desc: "PDFのアップロード、YouTube URLの貼り付け、画像 (JPG/PNG) の送信、テキストの貼り付けなど。",
+                step2Text: "AIが面倒な作業を代行：",
+                step2Desc: "SourceFluent はフォーマットを問わず、数秒でコンテンツを処理します。",
+                step3Text: "トレーニング開始：",
+                step3Desc: "すぐにパーソナライズされたルーティンにアクセスして学習を始められます。",
+                benefitsTitle: "得られるもの：",
+                b1: "文脈のある自動化された穴埋め問題。",
+                b2: "教材から直接抽出されたやりがいのあるクイズ。",
+                b3: "語彙を永遠に記憶に定着させるスマートフラッシュカード。",
+                b4: "一人で話す練習を強制するスピーキングプロンプト。",
+                b5: "リスニングスキルを鍛えるためのネイティブ生成音声。",
+                b6: "教材作成の無駄な時間はゼロ。ただ座って勉強するだけ。",
+                offerTitle: "アーリーバードプラン。最初の50ユーザーは初月無料。",
+                guaranteeText: "7日間の無条件返金保証。",
+                ctaButton: "今すぐベータ版を使いたい",
+                ctaDisclaimer: "*SourceFluent は現在ベータ版です。あなたのフィードバックがプラットフォームの成長に役立ちます。",
+                formTitle: "お支払い済みですか？",
+                formSubtitle: "早期アクセスをすぐに有効にするために、以下からメールアドレスと領収書の画像を送信してください。",
+                labelName: "お名前",
+                phName: "何とお呼びすればよろしいですか？",
+                labelEmail: "アカウントのメールアドレス",
+                phEmail: "PayPalで使用したものと同じアドレス",
+                labelReceipt: "支払い領収書 (画像/写真)",
+                btnSubmit: "領収書を送信"
+            },
+            "ar": {
+                betaBadge: "الوصول المبكر / بيتا",
+                headline: "توقف عن إضاعة الوقت في نسخ النصوص وتلقي دروس لا تقودك إلى أي مكان.",
+                subheadline: "حوّل المحتوى الذي تستهلكه بالفعل على الإنترنت إلى آلتك الشخصية للطلاقة مع SourceFluent AI.",
+                problemText: "لقد سئمت من الدورات التدريبية الصارمة وفقدان التركيز أثناء النسخ واللصق في ChatGPT لإنشاء تمارينك الخاصة. أخذ دروس تعتمد فقط على النظرية، دون ممارسة نشطة، يتركك عالقًا ومحبطًا. الحقيقة هي أن تعلم اللغة الإنجليزية يعمل فقط عندما تدرس بأشياء تستمتع بها حقًا.",
+                howTitle: "كيف تعمل:",
+                step1Text: "أدخل أي شيء:",
+                step1Desc: "قم بتحميل ملف PDF، أو الصق رابط فيديو يوتيوب، أو أرسل صورة (JPG/PNG)، أو الصق أي نص.",
+                step2Text: "الذكاء الاصطناعي يقوم بالعمل الشاق:",
+                step2Desc: "تقوم SourceFluent بمعالجة المحتوى الخاص بك في ثوانٍ، بغض النظر عن التنسيق.",
+                step3Text: "ابدأ التدريب:",
+                step3Desc: "ادخل إلى روتينك المخصص فورًا وابدأ الدراسة.",
+                benefitsTitle: "ما ستحصل عليه:",
+                b1: "تمارين آلية لملء الفراغات مع السياق.",
+                b2: "اختبارات صعبة مستخرجة مباشرة من موادك.",
+                b3: "بطاقات تعليمية ذكية لجعل المفردات تلتصق بالذاكرة للأبد.",
+                b4: "توجيهات التحدث لإجبارك على ممارسة التحدث بمفردك.",
+                b5: "صوت مولد محليًا لتدريب مهارات الاستماع لديك.",
+                b6: "لا وقت ضائع في إنشاء المواد. فقط اجلس وادرس.",
+                offerTitle: "خطة الطيور المبكرة. الشهر الأول مجانًا لأول 50 مستخدمًا.",
+                guaranteeText: "ضمان استرداد الأموال غير المشروط لمدة 7 أيام.",
+                ctaButton: "أريد البيتا الآن",
+                ctaDisclaimer: "*منصة SourceFluent حاليًا في المرحلة التجريبية. ستساعد تعليقاتك في تشكيل المنصة.",
+                formTitle: "هل دفعت بالفعل؟",
+                formSubtitle: "أرسل بريدك الإلكتروني وإيصال الدفع أدناه حتى نتمكن من منحك الوصول المبكر على الفور.",
+                labelName: "اسمك",
+                phName: "بماذا يجب أن نناديك؟",
+                labelEmail: "البريد الإلكتروني للحساب",
+                phEmail: "نفس البريد المستخدم في PayPal",
+                labelReceipt: "إيصال الدفع (صورة)",
+                btnSubmit: "إرسال الإيصال"
+            },
+            "he": {
+                betaBadge: "גישה מוקדמת / בטא",
+                headline: "תפסיק לבזבז זמן בהעתקת טקסטים ולקחת שיעורים שלא מובילים לשום מקום.",
+                subheadline: "הפוך את התוכן שאתה כבר צורך באינטרנט למכונת השטף האישית שלך עם SourceFluent AI.",
+                problemText: "נמאס לך מקורסים נוקשים ומאיבוד ריכוז בזמן העתקה והדבקה לתוך ChatGPT כדי ליצור תרגילים משלך. לקחת שיעורים המבוססים רק על תיאוריה, ללא תרגול פעיל, פשוט משאיר אותך תקוע ומתוסכל. האמת היא, שלימוד אנגלית עובד רק כשאתה לומד עם דברים שאתה באמת נהנה מהם.",
+                howTitle: "איך זה עובד:",
+                step1Text: "זרוק פנימה כל דבר:",
+                step1Desc: "העלה קובץ PDF, הדבק כתובת URL של סרטון YouTube, שלח תמונה (JPG/PNG), או הדבק כל טקסט.",
+                step2Text: "ה-AI עושה את העבודה השחורה:",
+                step2Desc: "SourceFluent מעבדת את התוכן שלך בשניות, ללא קשר לפורמט.",
+                step3Text: "התחל להתאמן:",
+                step3Desc: "גש לשגרה המותאמת אישית שלך באופן מיידי והתחל ללמוד.",
+                benefitsTitle: "מה שאתה מקבל:",
+                b1: "תרגילי השלמת חסר אוטומטיים עם הקשר.",
+                b2: "בחנים מאתגרים שחולצו ישירות מהחומר שלך.",
+                b3: "כרטיסיות חכמות (Flashcards) כדי לגרום לאוצר מילים להישאר לנצח.",
+                b4: "הנחיות דיבור כדי לאלץ אותך לתרגל דיבור לבד.",
+                b5: "שמע שנוצר בצורה טבעית לאימון כישורי ההאזנה שלך.",
+                b6: "אפס זמן מבוזבז על יצירת חומרים. פשוט שב ולמד.",
+                offerTitle: "תוכנית מוקדמת. חודש ראשון בחינם ל-50 המשתמשים הראשונים.",
+                guaranteeText: "החזר כספי מובטח ללא תנאי תוך 7 ימים.",
+                ctaButton: "אני רוצה את הבטא עכשיו",
+                ctaDisclaimer: "*SourceFluent נמצאת כרגע בגרסת בטא. המשוב שלך יעזור לעצב את הפלטפורמה.",
+                formTitle: "כבר שילמת?",
+                formSubtitle: "הגש את האימייל והקבלה שלך למטה כדי שנוכל לאשר את הגישה המוקדמת שלך מיד.",
+                labelName: "השם שלך",
+                phName: "איך נקרא לך?",
+                labelEmail: "אימייל של החשבון",
+                phEmail: "אותו אחד שהשתמשת בו ב-PayPal",
+                labelReceipt: "קבלת תשלום (תמונה/צילום)",
+                btnSubmit: "שלח קבלה"
             }
         };
 
-        function applyLanguage() {
-            let userLang = navigator.language || navigator.userLanguage;
-            let langCode = userLang.toLowerCase().startsWith('pt') ? 'pt' : 'en';
-            
-            document.documentElement.lang = userLang;
-            const t = translations[langCode];
+        function toggleLangMenu() {
+            document.getElementById('lang-dropdown').classList.toggle('show');
+        }
 
+        window.onclick = function(event) {
+            if (!event.target.closest('.lang-switcher')) {
+                document.getElementById('lang-dropdown').classList.remove('show');
+            }
+        }
+
+        function applyTextsToDOM(t) {
             document.getElementById('beta-badge').innerText = t.betaBadge;
             document.getElementById('headline').innerText = t.headline;
             document.getElementById('subheadline').innerText = t.subheadline;
             document.getElementById('problem-text').innerText = t.problemText;
             document.getElementById('how-title').innerText = t.howTitle;
-            
             document.getElementById('step1-text').innerText = t.step1Text;
             document.getElementById('step1-desc').innerText = t.step1Desc;
             document.getElementById('step2-text').innerText = t.step2Text;
             document.getElementById('step2-desc').innerText = t.step2Desc;
             document.getElementById('step3-text').innerText = t.step3Text;
             document.getElementById('step3-desc').innerText = t.step3Desc;
-            
             document.getElementById('benefits-title').innerText = t.benefitsTitle;
             document.getElementById('b1').innerText = t.b1;
             document.getElementById('b2').innerText = t.b2;
@@ -633,12 +842,10 @@
             document.getElementById('b4').innerText = t.b4;
             document.getElementById('b5').innerText = t.b5;
             document.getElementById('b6').innerText = t.b6;
-            
             document.getElementById('offer-title').innerText = t.offerTitle;
             document.getElementById('guarantee-text').innerText = t.guaranteeText;
             document.getElementById('cta-button').innerText = t.ctaButton;
             document.getElementById('cta-disclaimer').innerText = t.ctaDisclaimer;
-
             document.getElementById('form-title').innerText = t.formTitle;
             document.getElementById('form-subtitle').innerText = t.formSubtitle;
             document.getElementById('label-name').innerText = t.labelName;
@@ -649,7 +856,28 @@
             document.getElementById('btn-submit').innerText = t.btnSubmit;
         }
 
-        document.addEventListener('DOMContentLoaded', applyLanguage);
+        function changeLanguage(langCode, flagIcon, displayName) {
+            document.getElementById('current-flag').setAttribute('icon', flagIcon);
+            document.getElementById('current-lang-code').innerText = displayName;
+            document.getElementById('lang-dropdown').classList.remove('show');
+            
+            // Ajusta lang e ativa RTL (Inverte a tela) se for Árabe ou Hebraico
+            document.documentElement.lang = langCode;
+            document.documentElement.dir = (langCode === 'ar' || langCode === 'he') ? 'rtl' : 'ltr';
+
+            if (translations[langCode]) {
+                applyTextsToDOM(translations[langCode]);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            let userLang = navigator.language || navigator.userLanguage;
+            if (userLang.toLowerCase().startsWith('pt')) {
+                changeLanguage('pt', 'twemoji:flag-brazil', 'PT');
+            } else {
+                changeLanguage('en', 'twemoji:flag-united-states', 'EN');
+            }
+        });
     </script>
 </body>
 </html>
