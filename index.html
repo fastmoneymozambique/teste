@@ -136,8 +136,8 @@
 
     <div class="lang-switcher">
         <button class="lang-btn" id="lang-btn" onclick="toggleLangMenu()">
-            <iconify-icon id="current-flag" icon="twemoji:flag-brazil"></iconify-icon>
-            <span id="current-lang-code">PT</span>
+            <iconify-icon id="current-flag" icon="twemoji:flag-united-states"></iconify-icon>
+            <span id="current-lang-code">EN</span>
             <iconify-icon icon="mdi:chevron-down"></iconify-icon>
         </button>
         
@@ -265,7 +265,7 @@
             <h3 id="form-title">Já fez o pagamento?</h3>
             <p class="form-subtitle" id="form-subtitle">Envie seu e-mail e a imagem do comprovante abaixo para liberarmos seu acesso antecipado imediatamente.</p>
             
-            <form action="https://formsubmit.co/sourcefluent@gmail.com" method="POST" enctype="multipart/form-data">
+            <form action="https://formsubmit.co/SEU_EMAIL_AQUI@gmail.com" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="_subject" value="Novo Comprovante - SourceFluent AI">
                 <input type="hidden" name="_captcha" value="false">
                 
@@ -505,7 +505,7 @@
                 step1Text: "कुछ भी अपलोड करें:",
                 step1Desc: "पीडीएफ अपलोड करें, YouTube वीडियो URL पेस्ट करें, छवि (JPG/PNG) भेजें, या कोई भी टेक्स्ट पेस्ट करें।",
                 step2Text: "एआई आपका काम आसान करता है:",
-                step2Desc: "SourceFluent आपके कंटेंट को सेकंडों में प्रोसेस करता है, चाहे फॉर्मेट कुछ भी हो।",
+                step2Desc: "SourceFluent आपके कंटेंट को सेकंडों में प्रोसेस करता है, चाहे फॉर्मेट कुछ भी নাস हो।",
                 step3Text: "ट्रेनिंग शुरू करें:",
                 step3Desc: "अपनी व्यक्तिगत दिनचर्या तक तुरंत पहुंचें और अध्ययन शुरू करें।",
                 benefitsTitle: "आपको क्या मिलेगा:",
@@ -706,7 +706,6 @@
             document.getElementById('current-lang-code').innerText = displayName;
             document.getElementById('lang-dropdown').classList.remove('show');
             
-            // Ajusta lang e ativa RTL (Inverte a tela) se for Árabe ou Hebraico
             document.documentElement.lang = langCode;
             document.documentElement.dir = (langCode === 'ar' || langCode === 'he') ? 'rtl' : 'ltr';
 
@@ -715,12 +714,9 @@
             }
         }
 
-        // Auto-detecção inteligente (roda quando a página carrega)
-        document.addEventListener('DOMContentLoaded', () => {
-            // Pega os 2 primeiros caracteres do idioma do navegador do visitante
+        // Execução SÍNCRONA e IMEDIATA para evitar qualquer flash visual
+        (function initLanguage() {
             let userLang = (navigator.language || navigator.userLanguage).toLowerCase().slice(0, 2);
-
-            // Mapa com todos os nossos idiomas
             const langMap = {
                 'pt': { code: 'pt', flag: 'twemoji:flag-brazil', label: 'PT' },
                 'en': { code: 'en', flag: 'twemoji:flag-united-states', label: 'EN' },
@@ -735,13 +731,12 @@
                 'he': { code: 'he', flag: 'twemoji:flag-israel', label: 'HE' }
             };
 
-            // Aplica a linguagem encontrada ou volta pro Inglês se for desconhecida
             if (langMap[userLang]) {
                 changeLanguage(langMap[userLang].code, langMap[userLang].flag, langMap[userLang].label);
             } else {
                 changeLanguage('en', 'twemoji:flag-united-states', 'EN');
             }
-        });
+        })();
     </script>
 </body>
 </html>
