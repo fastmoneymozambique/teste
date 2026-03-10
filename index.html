@@ -33,200 +33,49 @@
         }
 
         /* Suporte RTL para Árabe e Hebraico */
-        html[dir="rtl"] {
-            text-align: right;
-        }
-        html[dir="rtl"] .step-num {
-            margin-right: 0;
-            margin-left: 25px;
-        }
-        html[dir="rtl"] .benefits-list iconify-icon {
-            margin-right: 0;
-            margin-left: 15px;
-        }
-        html[dir="rtl"] .problem-section {
-            border-left: none;
-            border-right: 5px solid var(--orange-main);
-        }
-        html[dir="rtl"] .input-wrapper iconify-icon {
-            left: auto;
-            right: 15px;
-        }
-        html[dir="rtl"] .form-control {
-            padding: 14px 45px 14px 14px;
-        }
+        html[dir="rtl"] { text-align: right; }
+        html[dir="rtl"] .step-num { margin-right: 0; margin-left: 25px; }
+        html[dir="rtl"] .benefits-list iconify-icon { margin-right: 0; margin-left: 15px; }
+        html[dir="rtl"] .problem-section { border-left: none; border-right: 5px solid var(--orange-main); }
+        html[dir="rtl"] .input-wrapper iconify-icon { left: auto; right: 15px; }
+        html[dir="rtl"] .form-control { padding: 14px 45px 14px 14px; }
+        html[dir="rtl"] .form-control[type="file"] { padding: 11px 45px 11px 14px; }
 
         /* Seletor de Idiomas (Topo Direito) */
-        .lang-switcher {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-        html[dir="rtl"] .lang-switcher {
-            right: auto;
-            left: 20px;
-        }
+        .lang-switcher { position: absolute; top: 20px; right: 20px; z-index: 1000; }
+        html[dir="rtl"] .lang-switcher { right: auto; left: 20px; }
 
-        .lang-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: #fff;
-            border: 1px solid #e2e8f0;
-            padding: 8px 16px;
-            border-radius: 30px;
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--blue-dark);
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: all 0.2s ease;
-        }
+        .lang-btn { display: flex; align-items: center; gap: 8px; background: #fff; border: 1px solid #e2e8f0; padding: 8px 16px; border-radius: 30px; font-size: 0.95rem; font-weight: 700; color: var(--blue-dark); cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: all 0.2s ease; }
+        .lang-btn:hover { border-color: var(--blue-main); box-shadow: 0 4px 12px rgba(29, 78, 216, 0.15); }
+        .lang-btn iconify-icon { font-size: 1.2rem; }
 
-        .lang-btn:hover {
-            border-color: var(--blue-main);
-            box-shadow: 0 4px 12px rgba(29, 78, 216, 0.15);
-        }
+        .lang-dropdown { position: absolute; top: 100%; right: 0; margin-top: 10px; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 170px; max-height: 350px; overflow-y: auto; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        html[dir="rtl"] .lang-dropdown { right: auto; left: 0; }
+        .lang-dropdown.show { opacity: 1; visibility: visible; transform: translateY(0); }
 
-        .lang-btn iconify-icon {
-            font-size: 1.2rem;
-        }
-
-        .lang-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            margin-top: 10px;
-            background: #fff;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            width: 170px;
-            max-height: 350px; /* Evita que o menu passe da tela no celular */
-            overflow-y: auto;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        html[dir="rtl"] .lang-dropdown {
-            right: auto;
-            left: 0;
-        }
-
-        .lang-dropdown.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .lang-option {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 16px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--text-main);
-            cursor: pointer;
-            transition: background 0.2s ease;
-            text-align: left;
-        }
+        .lang-option { display: flex; align-items: center; gap: 12px; padding: 12px 16px; font-size: 0.9rem; font-weight: 700; color: var(--text-main); cursor: pointer; transition: background 0.2s ease; text-align: left; }
         html[dir="rtl"] .lang-option { text-align: right; }
-
-        .lang-option:hover {
-            background: var(--blue-light);
-            color: var(--blue-main);
-        }
-
-        .lang-option iconify-icon {
-            font-size: 1.4rem;
-        }
+        .lang-option:hover { background: var(--blue-light); color: var(--blue-main); }
+        .lang-option iconify-icon { font-size: 1.4rem; }
 
         /* Container Principal */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 80px 20px 60px 20px;
-            text-align: center;
-        }
+        .container { max-width: 900px; margin: 0 auto; padding: 80px 20px 60px 20px; text-align: center; }
 
         /* Animações Base */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4); } 70% { box-shadow: 0 0 0 20px rgba(249, 115, 22, 0); } 100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); } }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4); }
-            70% { box-shadow: 0 0 0 20px rgba(249, 115, 22, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
-        }
+        .animate-fade { opacity: 0; animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .delay-1 { animation-delay: 0.1s; } .delay-2 { animation-delay: 0.2s; } .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; } .delay-5 { animation-delay: 0.5s; } .delay-6 { animation-delay: 0.6s; }
 
-        .animate-fade {
-            opacity: 0;
-            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-        .delay-5 { animation-delay: 0.5s; }
-        .delay-6 { animation-delay: 0.6s; }
-
-        /* Badge Beta */
-        .beta-badge {
-            display: inline-block;
-            background-color: #fef08a;
-            color: #854d0e;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            padding: 6px 16px;
-            border-radius: 20px;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        /* Headline & Subheadline */
-        h1 {
-            font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: 20px;
-            line-height: 1.2;
-            background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-main) 50%, var(--orange-main) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: var(--blue-dark);
-        }
-
-        h2.subheadline {
-            font-size: 1.3rem;
-            font-weight: 400;
-            color: var(--blue-main);
-            margin-bottom: 60px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* O problema */
-        .problem-section {
-            background-color: var(--blue-light);
-            padding: 40px;
-            border-radius: 12px;
-            margin-bottom: 60px;
-            text-align: start; /* Adapta RTL/LTR automático */
-            border-left: 5px solid var(--orange-main);
-            font-size: 1.1rem;
-            box-shadow: 0 10px 30px rgba(29, 78, 216, 0.05);
-        }
-
-        /* Como funciona */
+        /* Elementos da Página */
+        .beta-badge { display: inline-block; background-color: #fef08a; color: #854d0e; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; margin-bottom: 20px; letter-spacing: 1px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        h1 { font-size: 3rem; font-weight: 900; margin-bottom: 20px; line-height: 1.2; background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-main) 50%, var(--orange-main) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: var(--blue-dark); }
+        h2.subheadline { font-size: 1.3rem; font-weight: 400; color: var(--blue-main); margin-bottom: 60px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        
+        .problem-section { background-color: var(--blue-light); padding: 40px; border-radius: 12px; margin-bottom: 60px; text-align: start; border-left: 5px solid var(--orange-main); font-size: 1.1rem; box-shadow: 0 10px 30px rgba(29, 78, 216, 0.05); }
+        
         .how-it-works { margin-bottom: 60px; }
         .how-it-works h3 { font-size: 2rem; color: var(--blue-dark); margin-bottom: 30px; }
         .steps-container { display: flex; flex-direction: column; gap: 20px; text-align: start; }
@@ -238,7 +87,6 @@
         .step-icons iconify-icon { transition: transform 0.2s ease, color 0.2s ease; background: var(--blue-light); padding: 10px; border-radius: 8px; }
         .step-icons iconify-icon:hover { transform: scale(1.1); color: var(--orange-main); }
 
-        /* Benefícios */
         .benefits-section { margin-bottom: 60px; text-align: start; }
         .benefits-section h3 { font-size: 2rem; color: var(--blue-dark); margin-bottom: 30px; text-align: center; }
         .benefits-list { list-style: none; display: grid; grid-template-columns: 1fr; gap: 15px; }
@@ -247,19 +95,16 @@
         html[dir="rtl"] .benefits-list li:hover { transform: translateX(-5px); }
         .benefits-list iconify-icon { color: var(--orange-main); font-size: 1.8rem; margin-right: 15px; min-width: 30px; }
 
-        /* Preço e Oferta */
         .pricing-section { background: linear-gradient(135deg, var(--blue-dark) 0%, #1e293b 100%); color: white; padding: 60px 30px 80px 30px; border-radius: 16px; margin-bottom: 40px; box-shadow: 0 20px 40px rgba(15, 23, 42, 0.2); }
         .price { font-size: 4rem; font-weight: 900; color: var(--orange-main); margin-bottom: 10px; line-height: 1; }
         .offer-details { font-size: 1.2rem; margin-bottom: 25px; color: #f8fafc; }
         .guarantee { font-size: 1rem; color: #cbd5e1; display: flex; align-items: center; justify-content: center; gap: 8px; }
 
-        /* CTA */
         .cta-container { margin-top: -70px; position: relative; z-index: 10; margin-bottom: 60px; }
         .cta-button { display: inline-block; background-color: var(--orange-main); color: white; font-size: 1.6rem; font-weight: 900; text-transform: uppercase; text-decoration: none; padding: 25px 50px; border-radius: 50px; box-shadow: 0 10px 25px rgba(249, 115, 22, 0.4); transition: all 0.3s ease; cursor: pointer; border: none; animation: pulse 2s infinite; }
         .cta-button:hover { background-color: var(--orange-hover); transform: translateY(-3px) scale(1.02); box-shadow: 0 15px 35px rgba(249, 115, 22, 0.6); animation: none; }
         .cta-disclaimer { font-size: 0.85rem; color: #64748b; margin-top: 25px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.5; }
 
-        /* Formulário de Comprovante */
         .form-section { background: #fff; padding: 40px; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; max-width: 600px; margin: 0 auto; text-align: start; }
         .form-section h3 { font-size: 1.5rem; color: var(--blue-dark); margin-bottom: 10px; text-align: center; }
         .form-section p.form-subtitle { text-align: center; color: #64748b; margin-bottom: 30px; font-size: 0.95rem; }
@@ -269,11 +114,10 @@
         .input-wrapper iconify-icon { position: absolute; left: 15px; font-size: 1.2rem; color: #94a3b8; }
         .form-control { width: 100%; padding: 14px 14px 14px 45px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1rem; transition: all 0.3s ease; outline: none; color: var(--text-main); }
         .form-control:focus { border-color: var(--blue-main); box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.1); }
-        .form-control[type="file"] { padding: 11px 14px 11px 45px; background: #f8fafc; cursor: pointer; }
+        .form-control[type="file"] { background: #f8fafc; cursor: pointer; }
         .submit-btn { width: 100%; background-color: var(--blue-main); color: white; font-size: 1.2rem; font-weight: 700; padding: 16px; border-radius: 8px; border: none; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 10px; }
         .submit-btn:hover { background-color: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(15, 23, 42, 0.2); }
 
-        @media (min-width: 768px) { .benefits-list { grid-template-columns: 1fr 1fr; } }
         @media (max-width: 600px) {
             .lang-switcher { top: 15px; right: 15px; }
             html[dir="rtl"] .lang-switcher { right: auto; left: 15px; }
@@ -281,6 +125,7 @@
             h1 { font-size: 2.2rem; }
             .step { flex-direction: column; text-align: center; padding: 20px; }
             .step-num { margin: 0 0 15px 0; }
+            html[dir="rtl"] .step-num { margin: 0 0 15px 0; }
             .step-icons { justify-content: center; }
             .cta-button { font-size: 1.2rem; padding: 20px 30px; width: 90%; }
             .form-section { padding: 25px 20px; }
@@ -870,10 +715,29 @@
             }
         }
 
+        // Auto-detecção inteligente (roda quando a página carrega)
         document.addEventListener('DOMContentLoaded', () => {
-            let userLang = navigator.language || navigator.userLanguage;
-            if (userLang.toLowerCase().startsWith('pt')) {
-                changeLanguage('pt', 'twemoji:flag-brazil', 'PT');
+            // Pega os 2 primeiros caracteres do idioma do navegador do visitante
+            let userLang = (navigator.language || navigator.userLanguage).toLowerCase().slice(0, 2);
+
+            // Mapa com todos os nossos idiomas
+            const langMap = {
+                'pt': { code: 'pt', flag: 'twemoji:flag-brazil', label: 'PT' },
+                'en': { code: 'en', flag: 'twemoji:flag-united-states', label: 'EN' },
+                'es': { code: 'es', flag: 'twemoji:flag-spain', label: 'ES' },
+                'fr': { code: 'fr', flag: 'twemoji:flag-france', label: 'FR' },
+                'de': { code: 'de', flag: 'twemoji:flag-germany', label: 'DE' },
+                'it': { code: 'it', flag: 'twemoji:flag-italy', label: 'IT' },
+                'hi': { code: 'hi', flag: 'twemoji:flag-india', label: 'HI' },
+                'zh': { code: 'zh', flag: 'twemoji:flag-china', label: 'ZH' },
+                'ja': { code: 'ja', flag: 'twemoji:flag-japan', label: 'JA' },
+                'ar': { code: 'ar', flag: 'twemoji:flag-saudi-arabia', label: 'AR' },
+                'he': { code: 'he', flag: 'twemoji:flag-israel', label: 'HE' }
+            };
+
+            // Aplica a linguagem encontrada ou volta pro Inglês se for desconhecida
+            if (langMap[userLang]) {
+                changeLanguage(langMap[userLang].code, langMap[userLang].flag, langMap[userLang].label);
             } else {
                 changeLanguage('en', 'twemoji:flag-united-states', 'EN');
             }
