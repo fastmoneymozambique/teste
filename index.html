@@ -24,12 +24,19 @@
             font-family: 'Inter', sans-serif;
         }
 
+        /* TRUQUE ANTI-PISCAR: Esconde a página até o idioma estar 100% carregado */
         body {
+            visibility: hidden;
             background-color: var(--bg-main);
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
             position: relative;
+        }
+
+        /* Classe ativada pelo JavaScript quando a tradução termina */
+        body.loaded {
+            visibility: visible;
         }
 
         /* Suporte RTL para Árabe e Hebraico */
@@ -505,7 +512,7 @@
                 step1Text: "कुछ भी अपलोड करें:",
                 step1Desc: "पीडीएफ अपलोड करें, YouTube वीडियो URL पेस्ट करें, छवि (JPG/PNG) भेजें, या कोई भी टेक्स्ट पेस्ट करें।",
                 step2Text: "एआई आपका काम आसान करता है:",
-                step2Desc: "SourceFluent आपके कंटेंट को सेकंडों में प्रोसेस करता है, चाहे फॉर्मेट कुछ भी নাস हो।",
+                step2Desc: "SourceFluent आपके कंटेंट को सेकंडों में प्रोसेस करता है, चाहे फॉर्मेट कुछ भी हो।",
                 step3Text: "ट्रेनिंग शुरू करें:",
                 step3Desc: "अपनी व्यक्तिगत दिनचर्या तक तुरंत पहुंचें और अध्ययन शुरू करें।",
                 benefitsTitle: "आपको क्या मिलेगा:",
@@ -714,7 +721,7 @@
             }
         }
 
-        // Execução SÍNCRONA e IMEDIATA para evitar qualquer flash visual
+        // Script SÍNCRONO: Identifica a linguagem, traduz, e SÓ DEPOIS mostra a página para o usuário
         (function initLanguage() {
             let userLang = (navigator.language || navigator.userLanguage).toLowerCase().slice(0, 2);
             const langMap = {
@@ -736,6 +743,9 @@
             } else {
                 changeLanguage('en', 'twemoji:flag-united-states', 'EN');
             }
+
+            // Exibe a página (sem piscar)
+            document.body.classList.add('loaded');
         })();
     </script>
 </body>
