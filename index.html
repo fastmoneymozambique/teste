@@ -60,6 +60,7 @@
         .delay-3 { animation-delay: 0.3s; }
         .delay-4 { animation-delay: 0.4s; }
         .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
 
         /* Badge Beta */
         .beta-badge {
@@ -82,12 +83,11 @@
             font-weight: 900;
             margin-bottom: 20px;
             line-height: 1.2;
-            /* Texto Gradiente */
             background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-main) 50%, var(--orange-main) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            color: var(--blue-dark); /* Fallback */
+            color: var(--blue-dark);
         }
 
         h2.subheadline {
@@ -231,7 +231,7 @@
         .pricing-section {
             background: linear-gradient(135deg, var(--blue-dark) 0%, #1e293b 100%);
             color: white;
-            padding: 60px 30px 80px 30px; /* Padding extra embaixo para o CTA */
+            padding: 60px 30px 80px 30px;
             border-radius: 16px;
             margin-bottom: 40px;
             box-shadow: 0 20px 40px rgba(15, 23, 42, 0.2);
@@ -262,9 +262,10 @@
 
         /* CTA */
         .cta-container {
-            margin-top: -70px; /* Sobrepõe a seção de preço */
+            margin-top: -70px;
             position: relative;
             z-index: 10;
+            margin-bottom: 60px;
         }
 
         .cta-button {
@@ -288,7 +289,7 @@
             background-color: var(--orange-hover);
             transform: translateY(-3px) scale(1.02);
             box-shadow: 0 15px 35px rgba(249, 115, 22, 0.6);
-            animation: none; /* Para o pulso no hover */
+            animation: none;
         }
 
         .cta-disclaimer {
@@ -301,6 +302,104 @@
             line-height: 1.5;
         }
 
+        /* Formulário de Comprovante */
+        .form-section {
+            background: #fff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .form-section h3 {
+            font-size: 1.5rem;
+            color: var(--blue-dark);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .form-section p.form-subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--blue-dark);
+            font-size: 0.95rem;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrapper iconify-icon {
+            position: absolute;
+            left: 15px;
+            font-size: 1.2rem;
+            color: #94a3b8;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 14px 14px 45px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            outline: none;
+            color: var(--text-main);
+        }
+
+        .form-control:focus {
+            border-color: var(--blue-main);
+            box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.1);
+        }
+
+        .form-control[type="file"] {
+            padding: 11px 14px 11px 45px;
+            background: #f8fafc;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: var(--blue-main);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            padding: 16px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--blue-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(15, 23, 42, 0.2);
+        }
+
         @media (min-width: 768px) {
             .benefits-list { grid-template-columns: 1fr 1fr; }
         }
@@ -311,6 +410,7 @@
             .step-num { margin-right: 0; margin-bottom: 15px; }
             .step-icons { justify-content: center; }
             .cta-button { font-size: 1.2rem; padding: 20px 30px; width: 90%; }
+            .form-section { padding: 25px 20px; }
         }
     </style>
 </head>
@@ -391,12 +491,49 @@
         </div>
 
         <div class="cta-container animate-fade delay-5">
-            <a href="https://www.paypal.com/ncp/payment/GJ3PT4QSEJ3HW" class="cta-button" id="cta-button">
+            <a href="https://www.paypal.com/ncp/payment/GJ3PT4QSEJ3HW" class="cta-button" id="cta-button" target="_blank">
                 Quero o beta agora
             </a>
             <p class="cta-disclaimer" id="cta-disclaimer">
                 *O SourceFluent está em fase beta. Você terá acesso total às funcionalidades atuais e futuras, e sua opinião ajudará a moldar a plataforma.
             </p>
+        </div>
+
+        <div class="form-section animate-fade delay-6">
+            <h3 id="form-title">Já fez o pagamento?</h3>
+            <p class="form-subtitle" id="form-subtitle">Envie seu e-mail e a imagem do comprovante abaixo para liberarmos seu acesso antecipado imediatamente.</p>
+            
+            <form action="https://formly.email/e903f8eab43a44b2ac7ba775eecff000" method="POST" enctype="multipart/form-data">
+                
+                <div class="form-group">
+                    <label for="name" id="label-name">Seu Nome</label>
+                    <div class="input-wrapper">
+                        <iconify-icon icon="mdi:account"></iconify-icon>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Como quer ser chamado?" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" id="label-email">E-mail de Acesso</label>
+                    <div class="input-wrapper">
+                        <iconify-icon icon="mdi:email"></iconify-icon>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="O mesmo usado no PayPal" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="receipt" id="label-receipt">Comprovante de Pagamento (Imagem/Foto)</label>
+                    <div class="input-wrapper">
+                        <iconify-icon icon="mdi:image-outline"></iconify-icon>
+                        <input type="file" id="receipt" name="attachment" class="form-control" accept="image/png, image/jpeg, image/jpg" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span id="btn-submit">Enviar Comprovante</span>
+                    <iconify-icon icon="mdi:send"></iconify-icon>
+                </button>
+            </form>
         </div>
 
     </div>
@@ -425,7 +562,15 @@
                 offerTitle: "Plano Early Bird. Primeiro mês GRÁTIS para os 50 primeiros usuários.",
                 guaranteeText: "Garantia incondicional de 7 dias ou seu dinheiro de volta.",
                 ctaButton: "Quero o beta agora",
-                ctaDisclaimer: "*O SourceFluent está em fase beta. Você terá acesso total às funcionalidades atuais e futuras, e sua opinião ajudará a moldar a plataforma."
+                ctaDisclaimer: "*O SourceFluent está em fase beta. Você terá acesso total às funcionalidades atuais e futuras, e sua opinião ajudará a moldar a plataforma.",
+                formTitle: "Já fez o pagamento?",
+                formSubtitle: "Envie seu e-mail e a imagem do comprovante abaixo para liberarmos seu acesso antecipado imediatamente.",
+                labelName: "Seu Nome",
+                phName: "Como quer ser chamado?",
+                labelEmail: "E-mail de Acesso",
+                phEmail: "O mesmo usado no PayPal",
+                labelReceipt: "Comprovante de Pagamento (Imagem/Foto)",
+                btnSubmit: "Enviar Comprovante"
             },
             "en": {
                 betaBadge: "Early Access / Beta",
@@ -449,7 +594,15 @@
                 offerTitle: "Early Bird Plan. First month FREE for the first 50 users.",
                 guaranteeText: "7-day unconditional money-back guarantee.",
                 ctaButton: "I want the beta now",
-                ctaDisclaimer: "*SourceFluent is currently in beta. You'll get full access to current and future features, and your feedback will help shape the platform."
+                ctaDisclaimer: "*SourceFluent is currently in beta. You'll get full access to current and future features, and your feedback will help shape the platform.",
+                formTitle: "Already paid?",
+                formSubtitle: "Submit your email and the receipt image below so we can grant your early access right away.",
+                labelName: "Your Name",
+                phName: "What should we call you?",
+                labelEmail: "Account Email",
+                phEmail: "The same one used on PayPal",
+                labelReceipt: "Payment Receipt (Image/Photo)",
+                btnSubmit: "Submit Receipt"
             }
         };
 
@@ -485,6 +638,15 @@
             document.getElementById('guarantee-text').innerText = t.guaranteeText;
             document.getElementById('cta-button').innerText = t.ctaButton;
             document.getElementById('cta-disclaimer').innerText = t.ctaDisclaimer;
+
+            document.getElementById('form-title').innerText = t.formTitle;
+            document.getElementById('form-subtitle').innerText = t.formSubtitle;
+            document.getElementById('label-name').innerText = t.labelName;
+            document.getElementById('name').placeholder = t.phName;
+            document.getElementById('label-email').innerText = t.labelEmail;
+            document.getElementById('email').placeholder = t.phEmail;
+            document.getElementById('label-receipt').innerText = t.labelReceipt;
+            document.getElementById('btn-submit').innerText = t.btnSubmit;
         }
 
         document.addEventListener('DOMContentLoaded', applyLanguage);
